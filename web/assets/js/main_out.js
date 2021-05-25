@@ -1717,14 +1717,8 @@
         gameReset();
         showESCOverlay();
 
-        const regex = /ip=([\w\W]+:[0-9]+)/;
-        const args = window.location.search;
-        const div = args ? regex.exec(args.slice(1)) : null;
-        if (div) {
-            window.setserver(div[1]);
-        } else {
-            window.setserver(byId('gamemode').value);
-        }
+        window.setserver(`${window.location.host}/websocket`);
+
         drawGame();
         Logger.info(`Init done in ${Date.now() - LOAD_START}ms`);
     }
